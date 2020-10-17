@@ -3,7 +3,7 @@
 Repositorio que contiene los programas desarrollados a lo largo del bloque.
 
 ### Folder Structure
-
+```
 |- Avances
 |    |---- Avance2              
 |- Quiz
@@ -12,4 +12,4 @@ Repositorio que contiene los programas desarrollados a lo largo del bloque.
 |- Tarea
 |    |----Tarea3
 |_ README.md
-
+```
