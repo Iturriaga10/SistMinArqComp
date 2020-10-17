@@ -1,0 +1,46 @@
+/ 					*** Tarea 3: Prgramación en ensamblador. ***
+/ Ejercicio 9: Realiza un programa que tome la primera localidad de memoria de una secuencia 
+/	       	   de 6 números, llenando las restantes cinco con en valor de la anterior más uno.  
+
+Loop, Jns LoopCycle				/ Decrease One to LoopValue.
+	Jns IncrValue				/ Increase Value taken from Adrees Memory.
+	JnS PterRight
+	Jns SaveValue				/ Save New Value at Adrees Memory++.
+    
+/ ----------------------------------- Loop Value -------------------------------
+	Load LoopValue				/ Get LoopValue 
+   	Skipcond 400				/ LoopValue == 0
+	Jump Loop					/ Go to Loop until LoopValue == 0
+	Halt						/ End program.
+
+/ ------------------------------- Sub - Routines -------------------------------
+SaveValue, HEX 000
+	Load Temp
+    StoreI StoreAdress
+	JumpI SaveValue
+
+PterRight, HEX 000
+	Load StoreAdress
+    Add One
+    Store StoreAdress
+    JumpI PterRight
+    
+IncrValue, HEX 000
+	LoadI StoreAdress
+    Add One
+    Store Temp
+    JumpI IncrValue
+    
+LoopCycle, HEX 000
+	Load LoopValue
+    Subt One
+    Store LoopValue
+    JumpI LoopCycle
+
+/ ----------------------------------- Variables ---------------------------------
+StoreAdress, HEX 0300			/ Store Adress Memory 
+Temp, DEC 0						/ Auxiliar Variable
+LoopValue, DEC 5				/ Loop Variable.
+
+One, DEC 1						/ One Value to Operate.
+

@@ -1,0 +1,61 @@
+/ 			*** Tarea 3: Prgramación en ensamblador. ***
+/ Ejercicio 8: Realiza un programa que invierta 4 localidades de memoria. 
+
+Loop, Jns LoopCycle				/ Decrease One to LoopValue.
+	Jns TemptoA					/ Temp = a
+    
+/ ------------------------------------ a = b -------------------------------
+	JnS PterRight
+	LoadI StoreAdress
+	Store TempAB
+	JnS PterLeft
+	Load TempAB
+	StoreI StoreAdress
+	JnS PterRight
+
+	JnS BtoTemp					/ b = Temp
+    
+/ ----------------------------------- Loop Value -------------------------------
+	Load LoopValue				/ Get LoopValue 
+    Skipcond 400				/ LoopValue == 0
+	Jump Loop					/ Go to Loop until LoopValue == 0
+	Halt						/ End program.
+    
+/ ------------------------------- Sub - Routines -------------------------------
+PterLeft, HEX 000
+	Load StoreAdress
+    Subt One
+    Store StoreAdress
+    JumpI PterLeft
+
+PterRight, HEX 000
+	Load StoreAdress
+    Add One
+    Store StoreAdress
+    JumpI PterRight
+    
+LoopCycle, HEX 000
+	Load LoopValue
+    Subt One
+    Store LoopValue
+    JumpI LoopCycle
+
+TemptoA, HEX 000
+	LoadI StoreAdress
+	Store Temp
+    JumpI TemptoA
+
+BtoTemp, HEX 000
+	Load Temp
+	StoreI StoreAdress
+    JumpI BtoTemp
+
+/ ----------------------------------- Variables ---------------------------------
+StoreAdress, HEX 0300			/ Store Adress Memory 
+IngressValues, DEC 4			/ Number of values to ingress.
+
+Temp, DEC 0						/ Auxiliar Variable
+TempAB, DEC 0					/ Auxiliar Variable
+LoopValue, DEC 3				/ Loop Variable.
+
+One, DEC 1						/ One Value to Operate.

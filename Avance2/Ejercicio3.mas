@@ -1,0 +1,39 @@
+/ 					*** Avance 2 de situación problema.  ***
+/ Ejercicio 3: Tomando como referencia un sensor que entrega una lectura a través de 
+/	       	   un bus paralelo a razón de 12 bits/ms, realizar un programa dentro del 
+/	       	   entorno de MARIE, que almacene las primeras 50 mediciones en memoria.
+
+Loop, Jns LoopCycle				/ Decrease One to LoopValue.
+	JnS SaveValue				/ Save the Input Value.
+	JnS PterRight				
+    
+/ ----------------------------------- Loop Value -------------------------------
+	Load LoopValue				/ Get LoopValue 
+   	Skipcond 400				/ LoopValue == 0
+	Jump Loop					/ Go to Loop until LoopValue == 0
+	Halt						/ End program.
+
+/ ------------------------------- Sub - Routines -------------------------------
+SaveValue, HEX 000
+	Input 
+	StoreI StoreAdress
+	JumpI SaveValue
+
+PterRight, HEX 000
+	Load StoreAdress
+    Add One
+    Store StoreAdress
+    JumpI PterRight
+
+LoopCycle, HEX 000
+	Load LoopValue
+    Subt One
+    Store LoopValue
+    JumpI LoopCycle
+    
+/ ----------------------------------- Variables ---------------------------------
+StoreAdress, HEX 0300			/ Store Adress Memory.
+LoopValue, DEC 50				/ Loop Variable.
+
+One, DEC 1						/ One Value to Operate.
+

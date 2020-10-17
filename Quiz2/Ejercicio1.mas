@@ -1,0 +1,13 @@
+/                				*** Quiz3 ***
+/ Ejercicio 1: Realice un programa que sume dos valores introducidos por el 
+/              usuario. 
+
+Input               / Ingress value.
+Store Val1          / Store Ingress value in Val1.
+Input               / Ingress value.
+Add Val1            / Ingress value - Val1.
+Output              
+Halt                / End Program.
+
+/ ----------------------------------- Variables ---------------------------------
+Val1, DEC 0		    / Auxiliar Variable to ingress values and Result for ( A + B).

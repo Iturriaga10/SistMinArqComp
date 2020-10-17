@@ -1,0 +1,37 @@
+/ 				*** Quiz3 ***
+/ Ejercicio 1: Escriba un programa en Marie.js que almacene 10 valores diferentes 
+/	       partiendo de la dirección de memoria 3000.
+
+Loop, Load IngressValues
+	Jns DecreaseIngressValues 	/ Decrease IngressValues.
+	Jns StoreValue 			/ Store new values.
+	JnS IncressStoreAdress 		/ Incres Indirect store adress. 
+    
+    / Condtion
+    	Load IngressValues
+	Skipcond 400			/ IngressValues == 0.
+	Jump Loop			/ Return Loop.
+	Halt				/ End Program.
+
+/ ------------------------------- Sub - Routines -------------------------------
+StoreValue, HEX 000
+	Input				/ Input Value from User.
+	StoreI StoreAdress		/ Indirect Store at StoreAdress.
+    	JumpI StoreValue		/ Exit Sub-Routine
+    
+DecreaseIngressValues, HEX 000
+	Subt One
+    	Store IngressValues
+    	JumpI DecreaseIngressValues	/ Exit Sub-Routine
+
+IncressStoreAdress, HEX 000
+	Load StoreAdress
+	Add One
+	Store StoreAdress
+	JumpI IncressStoreAdress 	/ Exit Sub-Routine
+
+/ ------------------------------- Variables ------------------------------- 
+One, DEC 1				/ One Value to Operate.
+IngressValues, DEC 10			/ Number of values to ingress.
+StoreAdress, HEX 0300			/ Store Adress Memory 
+

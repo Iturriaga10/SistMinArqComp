@@ -1,0 +1,47 @@
+/ 				                      *** Quiz3 ***
+/ Ejercicio 2: Escriba un programa en Marie.js que resuelva la siguiente operación: 
+/ 	           X = c* (a + b) .
+
+/ ---------------------------------- (A + B) ---------------------------------
+Input			/ Ingress fisrt valaue ( A ). 
+Store Val1		/ Store first value.
+Input			/ Ingress second valaue ( B ).
+Add Val1		/ Adding ( B + A ).
+Store Val1		/ Storing result in Val1			
+
+/ -------------------------------- C * (A + B) --------------------------------
+Input 			/ Ingress third valaue ( A ).
+Store Val2		/ Store third value.
+
+/ ------------------------------ Multiplication -------------------------------
+Load Val2		/ Load Val2 to check if is equal to 0.
+Skipcond 400	/ Val2 == 0
+Jns MultLoop	/ Calling MultLoop Sub-Routine.
+
+/ ------------------------------- Output Result -------------------------------
+Load Mult		/ Load Final Result.
+Output			/ Output Result.
+Halt 			/ End Program.
+
+/ ------------------------------- Sub - Routines -------------------------------
+MultLoop, HEX 000
+	Load Mult
+    Add Val1
+    Store Mult
+    Load Val2
+    Subt One
+    Store Val2
+    / Exit Soubrutine
+    Load MultLoop
+    Subt Three
+  	Store MultLoop
+    JumpI MultLoop
+
+/ ----------------------------------- Variables ---------------------------------
+Val1, DEC 0		/ Auxiliar Variable to ingress values and Result for ( A + B).
+Val2, DEC 0		/ Multiplier value.
+Mult, DEC 0		/ Multiplication auxiliar --> Multiplicaion Result.
+
+One, DEC 1     		/ One Value to Operate.
+Three, DEC 3    	/ Three Value to Operate.
+
