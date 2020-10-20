@@ -1,0 +1,60 @@
+/ 			*** Tarea 3: Prgramación en ensamblador. ***
+/ Ejercicio 8: Realiza un programa que invierta 4 localidades de memoria. 
+
+/ 					*** Avance 2 de situación problema.  ***
+/ Ejercicio 3: Tomando como referencia un sensor que entrega una lectura a través de 
+/	       	   un bus paralelo a razón de 12 bits/ms, realizar un programa dentro del 
+/	       	   entorno de MARIE, que almacene las primeras 50 mediciones en memoria.
+
+Input 
+StoreI StoreAdress
+Input
+Jns SubtI
+Input
+AddI StoreAdress
+StoreI StoreAdress
+
+LoadI StoreAdress
+Store Val1
+
+/ ------------------------------ Multiplication -------------------------------
+Load Val2		/ Load Val2 to check if is equal to 0.
+Skipcond 400	/ Val2 == 0
+Jns MultLoop	/ Calling MultLoop Sub-Routine.
+
+Load Mult
+Output
+
+Halt
+
+/ ------------------------------- Sub - Routines -------------------------------
+SubtI, HEX 000
+    Store Val1
+    LoadI StoreAdress
+	Subt Val1
+    StoreI StoreAdress
+	JumpI SubtI
+
+MultLoop, HEX 000
+	Load Mult
+    Add Val1
+    Store Mult
+    Load Val2
+    Subt One
+    Store Val2
+    / Exit Soubrutine
+    Load MultLoop
+    Subt Three
+  	Store MultLoop
+    JumpI MultLoop
+    
+/ ----------------------------------- Variables ---------------------------------
+StoreAdress, HEX 0300			/ Store Adress Memory.
+
+Val1, DEC 0
+Val2, DEC 5
+Mult, DEC 0
+
+One, DEC 1						/ One Value to Operate.
+Three, DEC 3    				/ Three Value to Operate.
+Val2, DEC 5						/ Five Value to Operate.
